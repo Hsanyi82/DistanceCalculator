@@ -5,6 +5,9 @@ class Program
     // Store the average radius of Earth in kilometers.
     private const double EarthRadiusKm = 6371;
 
+    // One statute mile is exactly 1.609344 kilometers.
+    private const double KilometersPerMile = 1.609344;
+
     // Create a list that can store Point objects.
     private List<Point> points = new List<Point>();
 
@@ -37,6 +40,9 @@ class Program
         // Convert an angle from degrees to radians.
         private double ToRadians(double angle) => Math.PI * angle / 180.0;
 
+        // Convert a distance from kilometers to statute miles.
+        private double KilometersToMiles(double kilometers) => kilometers / KilometersPerMile;
+
     static void Main(string[] args)
     {
         // Create the first point from its latitude and longitude.
@@ -50,9 +56,11 @@ class Program
 
         // Calculate the distance between the two points using the Haversine formula.
         double distance = program.CalculateHaversineDistance(p1.lat, p1.lon, p2.lat, p2.lon);
+        double distanceInMiles = program.KilometersToMiles(distance);
 
         // Display the calculated distance in the console.
         Console.WriteLine($"The distance between the points is: {distance} km");
+        Console.WriteLine($"The distance between the points is: {distanceInMiles} miles");
     
     }
 
